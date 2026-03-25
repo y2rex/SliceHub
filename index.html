@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SliceHub — Hot &amp; Fresh Pizza in Purnea | Charcoal Fired Goodness</title>
+  <meta name="description" content="Order hot &amp; fresh charcoal-fired pizzas in Purnea. Starting at ₹99. Fast delivery. Order on WhatsApp! Use code SLICE10 for 10% off your first order." />
+  <meta name="keywords" content="pizza purnea, pizza delivery purnea, slicehub, charcoal fired pizza, cloud kitchen purnea" />
+  <meta property="og:title"       content="SliceHub — Hot &amp; Fresh Pizza in Purnea" />
+  <meta property="og:description" content="Charcoal Fired Goodness | Starting at ₹99 | Order on WhatsApp" />
+  <meta property="og:image"       content="logo.png" />
+  <meta property="og:type"        content="website" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Mobile Nav Overlay -->
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- ============================================================
+       ANNOUNCEMENT BAR
+  ============================================================ -->
+  <div class="announcement-bar">
+    <i class="fa-solid fa-fire"></i>
+    NEW: Cheese Burst now available!
+    <span class="sep">|</span>
+    Use code <span class="code">SLICE10</span> for 10% OFF
+    <span class="sep">|</span>
+    Free delivery on orders above ₹299
+    <i class="fa-solid fa-motorcycle"></i>
+  </div>
+
+  <!-- ============================================================
+       NAVBAR
+  ============================================================ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+
+      <!-- Logo -->
+      <a href="#" class="logo-wrap">
+        <img src="logo.png" alt="SliceHub Logo" class="logo-img" />
+        <div class="logo-text">
+          <span class="logo-tagline">Charcoal Fired Goodness</span>
+          <span class="logo-location">Purnea, Bihar</span>
+        </div>
+      </a>
+
+      <!-- Hamburger (mobile) -->
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <!-- Nav Links -->
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#combos">Combos</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#insta">Instagram</a></li>
+        <li class="nav-cta-wrap">
+          <a href="#" data-general-order class="btn-nav-cta">
+            <i class="fa-brands fa-whatsapp"></i> Order Now
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="hero" id="hero">
+    <div class="hero-blobs">
+      <div class="hero-blob hero-blob-1"></div>
+      <div class="hero-blob hero-blob-2"></div>
+    </div>
+
+    <div class="hero-content">
+      <span class="hero-emoji reveal fade-up">🍕</span>
+
+      <div class="hero-badges reveal fade-up">
+        <span class="badge badge-yellow">⚡ Starting at ₹99</span>
+        <span class="badge badge-dim">Fast Delivery</span>
+        <span class="badge badge-dim">100% Veg</span>
+      </div>
+
+      <h1 class="hero-title reveal fade-up">
+        Hot &amp; Fresh Pizza<br />
+        <span class="fire-text">in Purnea</span> 🍕
+      </h1>
+
+      <p class="hero-sub reveal fade-up">
+        Charcoal Fired Goodness &nbsp;·&nbsp; Starting at ₹99 &nbsp;·&nbsp; Fast Delivery
+      </p>
+
+      <div class="hero-btns reveal fade-up">
+        <a href="#" data-general-order class="btn btn-red btn-hero" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-whatsapp"></i>
+          Order Now on WhatsApp
+        </a>
+        <a href="#menu" class="btn-ghost">View Full Menu ↓</a>
+      </div>
+
+      <div class="hero-scroll reveal fade-up">
+        Scroll to explore
+        <i class="fa-solid fa-chevron-down"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       STATS BAR
+  ============================================================ -->
+  <div class="stats-bar">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item reveal fade-up">
+          <div class="stat-value-row">
+            <span class="stat-number" data-target="200">0</span>
+            <span class="stat-suffix">+</span>
+          </div>
+          <p class="stat-label">Happy Customers</p>
+        </div>
+        <div class="stat-item reveal fade-up">
+          <div class="stat-value-row">
+            <span class="stat-number" data-target="4">0</span>
+            <span class="stat-suffix">.9★</span>
+          </div>
+          <p class="stat-label">Average Rating</p>
+        </div>
+        <div class="stat-item reveal fade-up">
+          <div class="stat-value-row">
+            <span class="stat-number" data-target="30">0</span>
+            <span class="stat-suffix">min</span>
+          </div>
+          <p class="stat-label">Avg. Delivery Time</p>
+        </div>
+        <div class="stat-item reveal fade-up">
+          <div class="stat-value-row">
+            <span class="stat-number" data-target="98">0</span>
+            <span class="stat-suffix">%</span>
+          </div>
+          <p class="stat-label">Would Reorder</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       COMBO DEALS
+  ============================================================ -->
+  <section class="section section-alt" id="combos">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag reveal fade-up">Best Value</span>
+        <h2 class="section-title reveal fade-up">🔥 Combo Deals</h2>
+        <p class="section-subtitle reveal fade-up">Handpicked bundles for the best experience</p>
+      </div>
+
+      <div class="combos-grid">
+
+        <!-- Starter Combo -->
+        <div class="combo-card reveal fade-up">
+          <div class="combo-emoji">🍕</div>
+          <h3 class="combo-name">Starter Combo</h3>
+          <p class="combo-tagline">Perfect for a solo treat</p>
+          <ul class="combo-items">
+            <li><i class="fa-solid fa-check"></i> 1 Medium Pizza (your choice)</li>
+            <li><i class="fa-solid fa-check"></i> Coke 250ml</li>
+          </ul>
+          <div class="combo-pricing">
+            <span class="combo-price">₹199</span>
+            <span class="combo-original">₹249</span>
+          </div>
+          <a href="#"
+             class="btn btn-green btn-full"
+             data-combo-name="Starter Combo"
+             data-combo-items="1 Medium Pizza + Coke"
+             data-combo-price="199"
+             target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-whatsapp"></i> Order Now
+          </a>
+        </div>
+
+        <!-- Double Treat (featured) -->
+        <div class="combo-card featured reveal fade-up">
+          <div class="combo-badge">⭐ Most Popular</div>
+          <div class="combo-emoji">🎉</div>
+          <h3 class="combo-name">Double Treat</h3>
+          <p class="combo-tagline">Share the love with someone special</p>
+          <ul class="combo-items">
+            <li><i class="fa-solid fa-check"></i> 2 Small Pizzas (your choice)</li>
+            <li><i class="fa-solid fa-check"></i> Garlic Bread</li>
+          </ul>
+          <div class="combo-pricing">
+            <span class="combo-price">₹299</span>
+            <span class="combo-original">₹379</span>
+          </div>
+          <a href="#"
+             class="btn btn-green btn-full"
+             data-combo-name="Double Treat"
+             data-combo-items="2 Small Pizzas + Garlic Bread"
+             data-combo-price="299"
+             target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-whatsapp"></i> Order Now
+          </a>
+        </div>
+
+        <!-- Family Combo -->
+        <div class="combo-card reveal fade-up">
+          <div class="combo-emoji">👨‍👩‍👧‍👦</div>
+          <h3 class="combo-name">Family Combo</h3>
+          <p class="combo-tagline">Feed the whole squad</p>
+          <ul class="combo-items">
+            <li><i class="fa-solid fa-check"></i> 2 Medium Pizzas (your choice)</li>
+            <li><i class="fa-solid fa-check"></i> Garlic Bread</li>
+            <li><i class="fa-solid fa-check"></i> Coke 250ml</li>
+          </ul>
+          <div class="combo-pricing">
+            <span class="combo-price">₹399</span>
+            <span class="combo-original">₹499</span>
+          </div>
+          <a href="#"
+             class="btn btn-green btn-full"
+             data-combo-name="Family Combo"
+             data-combo-items="2 Medium Pizzas + Garlic Bread + Coke"
+             data-combo-price="399"
+             target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-whatsapp"></i> Order Now
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MENU
+  ============================================================ -->
+  <section class="section" id="menu">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title reveal fade-up">🍕 Our Menu</h2>
+        <p class="section-subtitle reveal fade-up">Select your size &amp; order instantly on WhatsApp</p>
+      </div>
+
+      <div class="menu-grid">
+
+        <!-- Margherita -->
+        <div class="pizza-card reveal fade-up" data-name="Margherita">
+          <div class="pizza-emoji">🍕</div>
+          <h3 class="pizza-name">Margherita</h3>
+          <p class="pizza-desc">Classic tomato base, fresh mozzarella &amp; basil. The original done right.</p>
+          <div class="size-btns">
+            <button class="size-btn active" onclick="selectSize(this,'Small',99)">S ₹99</button>
+            <button class="size-btn"        onclick="selectSize(this,'Medium',199)">M ₹199</button>
+            <button class="size-btn"        onclick="selectSize(this,'Large',299)">L ₹299</button>
+          </div>
+          <div class="pizza-price-row">
+            <span class="pizza-price">₹99</span>
+            <span class="pizza-hint">tap size to change</span>
+          </div>
+          <a class="btn btn-green btn-full order-btn" href="#" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-whatsapp"></i> Order on WhatsApp
+          </a>
+        </div>
+
+        <!-- Farmhouse -->
+        <div class="pizza-card reveal fade-up" data-name="Farmhouse">
+          <div class="pizza-emoji">🌶️</div>
+          <h3 class="pizza-name">Farmhouse</h3>
+          <p class="pizza-desc">Onion, capsicum &amp; tomato on herbed tomato sauce. Farm-fresh flavour.</p>
+          <div class="size-btns">
+            <button class="size-btn active" onclick="selectSize(this,'Small',129)">S ₹129</button>
+            <button class="size-btn"        onclick="selectSize(this,'Medium',249)">M ₹249</button>
+            <button class="size-btn"        onclick="selectSize(this,'Large',349)">L ₹349</button>
+          </div>
+          <div class="pizza-price-row">
+            <span class="pizza-price">₹129</span>
+            <span class="pizza-hint">tap size to change</span>
+          </div>
+          <a class="btn btn-green btn-full order-btn" href="#" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-whatsapp"></i> Order on WhatsApp
+          </a>
+        </div>
+
+        <!-- Veg Loaded -->
+        <div class="pizza-card reveal fade-up" data-name="Veg Loaded">
+          <div class="pizza-emoji">🥦</div>
+          <h3 class="pizza-name">Veg Loaded</h3>
+          <p class="pizza-desc">Sweet corn, olives, capsicum, onion &amp; more — loaded with goodness.</p>
+          <div class="size-btns">
+            <button class="size-btn active" onclick="selectSize(this,'Small',149)">S ₹149</button>
+            <button class="size-btn"        onclick="selectSize(this,'Medium',269)">M ₹269</button>
+            <button class="size-btn"        onclick="selectSize(this,'Large',379)">L ₹379</button>
+          </div>
+          <div class="pizza-price-row">
+            <span class="pizza-price">₹149</span>
+            <span class="pizza-hint">tap size to change</span>
+          </div>
+          <a class="btn btn-green btn-full order-btn" href="#" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-whatsapp"></i> Order on WhatsApp
+          </a>
+        </div>
+
+        <!-- Paneer Special (Best Seller) -->
+        <div class="pizza-card bestseller reveal fade-up" data-name="Paneer Special">
+          <div class="pizza-ribbon">Best Seller</div>
+          <div class="pizza-emoji">🧀</div>
+          <h3 class="pizza-name">Paneer Special</h3>
+          <p class="pizza-desc">Tender paneer tikka, capsicum &amp; onion — charcoal-fired perfection.</p>
+          <div class="size-btns">
+            <button class="size-btn active" onclick="selectSize(this,'Small',159)">S ₹159</button>
+            <button class="size-btn"        onclick="selectSize(this,'Medium',279)">M ₹279</button>
+            <button class="size-btn"        onclick="selectSize(this,'Large',399)">L ₹399</button>
+          </div>
+          <div class="pizza-price-row">
+            <span class="pizza-price">₹159</span>
+            <span class="pizza-hint">tap size to change</span>
+          </div>
+          <a class="btn btn-green btn-full order-btn" href="#" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-whatsapp"></i> Order on WhatsApp
+          </a>
+        </div>
+
+        <!-- Cheese Burst -->
+        <div class="pizza-card reveal fade-up" data-name="Cheese Burst">
+          <div class="pizza-emoji">🫧</div>
+          <h3 class="pizza-name">Cheese Burst</h3>
+          <p class="pizza-desc">Extra cheese filled crust, double cheese topping. Cheese lovers rejoice!</p>
+          <div class="size-btns">
+            <button class="size-btn active" onclick="selectSize(this,'Small',169)">S ₹169</button>
+            <button class="size-btn"        onclick="selectSize(this,'Medium',299)">M ₹299</button>
+            <button class="size-btn"        onclick="selectSize(this,'Large',429)">L ₹429</button>
+          </div>
+          <div class="pizza-price-row">
+            <span class="pizza-price">₹169</span>
+            <span class="pizza-hint">tap size to change</span>
+          </div>
+          <a class="btn btn-green btn-full order-btn" href="#" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-whatsapp"></i> Order on WhatsApp
+          </a>
+        </div>
+
+        <!-- Corn Delight -->
+        <div class="pizza-card reveal fade-up" data-name="Corn Delight">
+          <div class="pizza-emoji">🌽</div>
+          <h3 class="pizza-name">Corn Delight</h3>
+          <p class="pizza-desc">Sweet golden corn &amp; cream cheese drizzle — light, fresh and satisfying.</p>
+          <div class="size-btns">
+            <button class="size-btn active" onclick="selectSize(this,'Small',119)">S ₹119</button>
+            <button class="size-btn"        onclick="selectSize(this,'Medium',229)">M ₹229</button>
+            <button class="size-btn"        onclick="selectSize(this,'Large',329)">L ₹329</button>
+          </div>
+          <div class="pizza-price-row">
+            <span class="pizza-price">₹119</span>
+            <span class="pizza-hint">tap size to change</span>
+          </div>
+          <a class="btn btn-green btn-full order-btn" href="#" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-whatsapp"></i> Order on WhatsApp
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PROMO BANNER
+  ============================================================ -->
+  <div class="promo-banner">
+    <h3>🎉 First Order Discount!</h3>
+    <p>
+      Use code <span class="promo-code">SLICE10</span> for <strong>10% OFF</strong> on your first order
+    </p>
+    <p class="promo-note">Mention the code while ordering on WhatsApp</p>
+  </div>
+
+  <!-- ============================================================
+       CUSTOMER REVIEWS
+  ============================================================ -->
+  <section class="section section-alt" id="reviews">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag reveal fade-up">Verified Orders</span>
+        <h2 class="section-title reveal fade-up">What Our Customers Say</h2>
+        <p class="section-subtitle reveal fade-up">Real orders. Real love. From Purnea.</p>
+      </div>
+
+      <!-- Slider -->
+      <div class="reviews-slider-wrap reveal fade-up">
+        <div class="reviews-slider">
+          <div class="reviews-track" id="reviewTrack">
+
+            <div class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p class="review-text">Paneer Special is absolutely fire! Literally the best pizza I've had in Purnea. The charcoal crust is something else. Will order every week!</p>
+              <div class="review-author">
+                <div class="review-avatar" style="background:#DC2626;">R</div>
+                <div>
+                  <p class="review-name">Rahul Sharma</p>
+                  <p class="review-loc"><i class="fa-solid fa-location-dot"></i> Purnea City</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p class="review-text">Ordered the Family Combo for movie night — everyone loved it! 2 medium pizzas + garlic bread for ₹399 is an insane deal. Delivery was super fast too.</p>
+              <div class="review-author">
+                <div class="review-avatar" style="background:#7c3aed;">P</div>
+                <div>
+                  <p class="review-name">Priya Singh</p>
+                  <p class="review-loc"><i class="fa-solid fa-location-dot"></i> Kasba Road</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p class="review-text">Cheese Burst was unreal — cheese literally oozed out when I cut it. My kids went crazy! Ordered via WhatsApp, super easy to respond and very quick service.</p>
+              <div class="review-author">
+                <div class="review-avatar" style="background:#15803d;">A</div>
+                <div>
+                  <p class="review-name">Amit Kumar</p>
+                  <p class="review-loc"><i class="fa-solid fa-location-dot"></i> Raniganj, Purnea</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="review-card">
+              <div class="review-stars">★★★★<span style="opacity:.35">★</span></div>
+              <p class="review-text">Classic Margherita done perfectly. Not too cheesy, not too light — just right. Arrived hot and well-packed. Portion size is very generous for just ₹99!</p>
+              <div class="review-author">
+                <div class="review-avatar" style="background:#2563eb;">S</div>
+                <div>
+                  <p class="review-name">Sneha Gupta</p>
+                  <p class="review-loc"><i class="fa-solid fa-location-dot"></i> Line Bazar</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p class="review-text">Double Treat combo with my roommate was the best decision. Two pizzas + garlic bread at ₹299? Can't beat that anywhere in Purnea. SliceHub is 10/10!</p>
+              <div class="review-author">
+                <div class="review-avatar" style="background:#EA580C;">V</div>
+                <div>
+                  <p class="review-name">Vikash Yadav</p>
+                  <p class="review-loc"><i class="fa-solid fa-location-dot"></i> Bhatta Bazar</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p class="review-text">Veg Loaded is my go-to every weekend! Fresh veggies, crispy base and that smoky charcoal flavour makes it different from regular pizzas. Highly recommend!</p>
+              <div class="review-author">
+                <div class="review-avatar" style="background:#0d9488;">A</div>
+                <div>
+                  <p class="review-name">Anjali Mishra</p>
+                  <p class="review-loc"><i class="fa-solid fa-location-dot"></i> Sadar Hospital Road</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="review-card">
+              <div class="review-stars">★★★★<span style="opacity:.35">★</span></div>
+              <p class="review-text">Corn Delight is surprisingly good — light, sweet and cheesy. Great for evenings. WhatsApp ordering is very convenient, they replied within minutes!</p>
+              <div class="review-author">
+                <div class="review-avatar" style="background:#ca8a04;">R</div>
+                <div>
+                  <p class="review-name">Rohit Jha</p>
+                  <p class="review-loc"><i class="fa-solid fa-location-dot"></i> Kali Mandir Chowk</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p class="review-text">Used SLICE10 on my first order and got 10% off on the Starter Combo. So affordable! The pizza was hot when it arrived. Perfect for a solo lunch. Absolutely love it!</p>
+              <div class="review-author">
+                <div class="review-avatar" style="background:#db2777;">P</div>
+                <div>
+                  <p class="review-name">Pooja Kumari</p>
+                  <p class="review-loc"><i class="fa-solid fa-location-dot"></i> Asha Nagar</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p class="review-text">Farmhouse pizza was loaded with fresh veggies. Ordered for our college group — everyone was impressed. Best part: they confirmed on WhatsApp instantly!</p>
+              <div class="review-author">
+                <div class="review-avatar" style="background:#4f46e5;">D</div>
+                <div>
+                  <p class="review-name">Deepak Thakur</p>
+                  <p class="review-loc"><i class="fa-solid fa-location-dot"></i> College Road</p>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /reviews-track -->
+        </div><!-- /reviews-slider -->
+
+        <!-- Slider controls -->
+        <div class="slider-controls">
+          <button class="slider-btn" id="reviewPrev" aria-label="Previous review">
+            <i class="fa-solid fa-arrow-left"></i>
+          </button>
+          <div class="slider-dots" id="reviewDots"></div>
+          <button class="slider-btn" id="reviewNext" aria-label="Next review">
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div><!-- /reviews-slider-wrap -->
+
+      <!-- Rating summary -->
+      <div class="review-summary">
+        <div class="review-summary-item reveal fade-up">
+          <p class="review-summary-number">4.9</p>
+          <p class="review-summary-stars">★★★★★</p>
+          <p class="review-summary-label">Average Rating</p>
+        </div>
+        <div class="review-summary-divider reveal fade-up"></div>
+        <div class="review-summary-item reveal fade-up">
+          <p class="review-summary-number">200+</p>
+          <p class="review-summary-label">Happy Customers</p>
+        </div>
+        <div class="review-summary-divider reveal fade-up"></div>
+        <div class="review-summary-item reveal fade-up">
+          <p class="review-summary-number">98%</p>
+          <p class="review-summary-label">Would Reorder</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FAQ
+  ============================================================ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title reveal fade-up">Frequently Asked Questions</h2>
+        <p class="section-subtitle reveal fade-up">Everything you need to know before ordering</p>
+      </div>
+
+      <div class="faq-list reveal fade-up">
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How do I place an order?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Simply click any <strong>"Order on WhatsApp"</strong> button. It opens WhatsApp with a pre-filled message including your pizza name, size and price. We confirm your order and delivery details instantly.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>What are your delivery timings?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>We are open every day from <strong>11:00 AM to 11:00 PM</strong>. Orders placed before 10:45 PM are accepted. We operate 7 days a week including Sundays and public holidays.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How long does delivery take?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Delivery typically takes <strong>30–45 minutes</strong> depending on your location within Purnea. We always aim to deliver hot and fresh. You will be kept updated via WhatsApp.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Do you deliver outside Purnea city?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Currently we deliver within <strong>Purnea city limits</strong>. If you are in a nearby area, message us on WhatsApp and we will check if delivery is possible for your location.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Is there a minimum order amount?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>There is no minimum order — you can order even a single Small pizza starting at <strong>₹99</strong>. Delivery is free on orders above ₹299.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How do I use the SLICE10 discount code?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>When placing your order on WhatsApp, simply mention <span class="mono">SLICE10</span> in your message. We will apply <strong>10% OFF</strong> on your first order automatically. Valid for new customers only.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Can I customize my pizza toppings?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes! Just mention your topping preferences in the WhatsApp chat after placing your order. We will do our best to accommodate. Extra toppings may carry a small additional charge.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Are all your pizzas vegetarian?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes — <strong>all our menu items are 100% vegetarian</strong>. We use fresh vegetables, paneer and quality cheese. No non-veg ingredients. Safe and delicious for the whole family!</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACT / FEEDBACK FORM
+  ============================================================ -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag reveal fade-up">Get in Touch</span>
+        <h2 class="section-title reveal fade-up">Send Feedback or Enquiry</h2>
+        <p class="section-subtitle reveal fade-up">We read every message. Share your experience or ask us anything!</p>
+      </div>
+
+      <div class="contact-wrapper reveal fade-up">
+
+        <!-- Info Cards -->
+        <div class="contact-info">
+          <div class="contact-info-card">
+            <div class="contact-info-icon"><i class="fa-brands fa-whatsapp"></i></div>
+            <h4>Quick Order</h4>
+            <p>For fastest response, message us directly on WhatsApp.</p>
+            <a href="https://wa.me/917367013432?text=Hi%20SliceHub!%20I%27d%20like%20to%20enquire." target="_blank" rel="noopener noreferrer" class="btn btn-green btn-sm">
+              <i class="fa-brands fa-whatsapp"></i> Chat Now
+            </a>
+          </div>
+          <div class="contact-info-card">
+            <div class="contact-info-icon" style="background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);"><i class="fa-brands fa-instagram"></i></div>
+            <h4>Instagram DM</h4>
+            <p>Slide into our DMs for offers, feedback or just to say hi!</p>
+            <a href="https://www.instagram.com/slicehub.official/" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+              <i class="fa-brands fa-instagram"></i> Follow Us
+            </a>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <!-- formsubmit.co: replace slicehub.official@gmail.com if email changes -->
+        <form class="contact-form"
+              action="https://formsubmit.co/slicehub.official@gmail.com"
+              method="POST">
+
+          <!-- formsubmit.co config -->
+          <input type="hidden" name="_subject"  value="New message from SliceHub website" />
+          <input type="hidden" name="_captcha"  value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <!-- Honeypot (anti-spam) -->
+          <input type="text"   name="_honey"    style="display:none" />
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="f-name">Your Name <span class="form-required">*</span></label>
+              <input  class="form-input" type="text"  id="f-name"  name="name"    placeholder="e.g. Rahul Sharma" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="f-email">Email Address <span class="form-required">*</span></label>
+              <input  class="form-input" type="email" id="f-email" name="email"   placeholder="you@example.com" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="f-type">Message Type <span class="form-required">*</span></label>
+            <select class="form-input form-select" id="f-type" name="type" required>
+              <option value="" disabled selected>Select a reason…</option>
+              <option value="Feedback">⭐ Feedback / Review</option>
+              <option value="Order Enquiry">🍕 Order Enquiry</option>
+              <option value="Complaint">⚠️ Complaint</option>
+              <option value="Other">💬 Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="f-msg">Message <span class="form-required">*</span></label>
+            <textarea class="form-input form-textarea" id="f-msg" name="message"
+                      placeholder="Tell us about your experience, ask a question, or share your pizza order idea…"
+                      required rows="5"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-red btn-full form-submit">
+            <i class="fa-solid fa-paper-plane"></i> Send Message
+          </button>
+
+          <p class="form-note">We typically reply within a few hours via email or WhatsApp.</p>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       INSTAGRAM
+  ============================================================ -->
+  <section class="section section-alt" id="insta">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title reveal fade-up">Follow Us on Instagram</h2>
+        <p class="section-subtitle reveal fade-up">Latest offers, new flavours &amp; behind-the-scenes 🍕</p>
+      </div>
+
+      <div class="instagram-inner">
+        <div class="qr-wrapper reveal fade-up">
+          <img src="slicehub_in_qr.png" alt="Scan to follow SliceHub on Instagram" />
+        </div>
+        <p class="qr-label reveal fade-up">Scan QR to Follow</p>
+        <a href="https://www.instagram.com/slicehub.official/"
+           target="_blank" rel="noopener noreferrer"
+           class="btn-instagram reveal fade-up">
+          <i class="fa-brands fa-instagram"></i>
+          @slicehub.official
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- Brand -->
+        <div>
+          <img src="logo.png" alt="SliceHub" class="footer-logo" />
+          <p class="footer-slogan">Serving happiness, one slice at a time.<br />Charcoal fired. Cloud kitchen.</p>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h4 class="footer-heading">Contact</h4>
+          <ul class="footer-contact">
+            <li><i class="fa-solid fa-phone"></i><a href="tel:+917367013432">+91 73670 13432</a></li>
+            <li><i class="fa-solid fa-location-dot"></i><span>Purnea, Bihar, India</span></li>
+            <li><i class="fa-regular fa-clock"></i><span>11am – 11pm, All Days</span></li>
+          </ul>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#combos"><i class="fa-solid fa-fire"></i> Combo Deals</a></li>
+            <li><a href="#menu"><i class="fa-solid fa-pizza-slice"></i> Our Menu</a></li>
+            <li>
+              <a href="https://www.instagram.com/slicehub.official/" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-instagram"></i> Instagram
+              </a>
+            </li>
+            <li>
+              <a href="#" data-general-order target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-whatsapp"></i> Order on WhatsApp
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 SliceHub. All rights reserved.</p>
+      <p>Made with <span style="color:var(--red)">♥</span> in Purnea, Bihar</p>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       STICKY WHATSAPP (mobile)
+  ============================================================ -->
+  <div class="sticky-wa">
+    <a href="#" data-general-order target="_blank" rel="noopener noreferrer">
+      <div class="wa-dot-wrap">
+        <span class="wa-dot-ping"></span>
+        <span class="wa-dot"></span>
+      </div>
+      <i class="fa-brands fa-whatsapp"></i>
+      Order on WhatsApp
+    </a>
+  </div>
+
+  <!-- Desktop floating WhatsApp -->
+  <a href="#" data-general-order class="floating-wa" target="_blank" rel="noopener noreferrer">
+    <i class="fa-brands fa-whatsapp"></i>
+    Order on WhatsApp
+  </a>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fa-solid fa-chevron-up"></i>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
