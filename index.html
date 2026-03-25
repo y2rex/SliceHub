@@ -195,6 +195,7 @@
                   data-name="Starter Combo"
                   data-emoji="🍕"
                   data-price="199"
+                  data-mrp="249"
                   data-note="1 Medium Pizza + Coke"
                   onclick="addComboToCart(this)">
             <i class="fa-solid fa-cart-plus"></i> Add to Cart
@@ -219,6 +220,7 @@
                   data-name="Double Treat"
                   data-emoji="🎉"
                   data-price="299"
+                  data-mrp="379"
                   data-note="2 Small Pizzas + Garlic Bread"
                   onclick="addComboToCart(this)">
             <i class="fa-solid fa-cart-plus"></i> Add to Cart
@@ -243,6 +245,7 @@
                   data-name="Family Combo"
                   data-emoji="👨‍👩‍👧‍👦"
                   data-price="399"
+                  data-mrp="499"
                   data-note="2 Medium Pizzas + Garlic Bread + Coke"
                   onclick="addComboToCart(this)">
             <i class="fa-solid fa-cart-plus"></i> Add to Cart
@@ -271,15 +274,18 @@
           <h3 class="pizza-name">Margherita</h3>
           <p class="pizza-desc">Classic tomato base, fresh mozzarella &amp; basil. The original done right.</p>
           <div class="size-btns">
-            <button class="size-btn active" onclick="selectSize(this,'Small',99)">S ₹99</button>
-            <button class="size-btn"        onclick="selectSize(this,'Medium',199)">M ₹199</button>
-            <button class="size-btn"        onclick="selectSize(this,'Large',299)">L ₹299</button>
+            <button class="size-btn active" data-mrp="129" onclick="selectSize(this,'Small',99)">S ₹99</button>
+            <button class="size-btn"        data-mrp="249" onclick="selectSize(this,'Medium',199)">M ₹199</button>
+            <button class="size-btn"        data-mrp="379" onclick="selectSize(this,'Large',299)">L ₹299</button>
           </div>
           <div class="pizza-price-row">
-            <span class="pizza-price">₹99</span>
+            <div class="pizza-price-wrap">
+              <span class="pizza-mrp">₹129</span>
+              <span class="pizza-price">₹99</span>
+            </div>
             <span class="pizza-hint">tap size to change</span>
           </div>
-          <button class="btn btn-red btn-full add-to-cart-btn" data-size="Small" data-price="99" onclick="addToCart(this)">
+          <button class="btn btn-red btn-full add-to-cart-btn" data-size="Small" data-price="99" data-mrp="129" onclick="addToCart(this)">
             <i class="fa-solid fa-cart-plus"></i> Add to Cart
           </button>
         </div>
@@ -290,15 +296,18 @@
           <h3 class="pizza-name">Farmhouse</h3>
           <p class="pizza-desc">Onion, capsicum &amp; tomato on herbed tomato sauce. Farm-fresh flavour.</p>
           <div class="size-btns">
-            <button class="size-btn active" onclick="selectSize(this,'Small',129)">S ₹129</button>
-            <button class="size-btn"        onclick="selectSize(this,'Medium',249)">M ₹249</button>
-            <button class="size-btn"        onclick="selectSize(this,'Large',349)">L ₹349</button>
+            <button class="size-btn active" data-mrp="169" onclick="selectSize(this,'Small',129)">S ₹129</button>
+            <button class="size-btn"        data-mrp="319" onclick="selectSize(this,'Medium',249)">M ₹249</button>
+            <button class="size-btn"        data-mrp="449" onclick="selectSize(this,'Large',349)">L ₹349</button>
           </div>
           <div class="pizza-price-row">
-            <span class="pizza-price">₹129</span>
+            <div class="pizza-price-wrap">
+              <span class="pizza-mrp">₹169</span>
+              <span class="pizza-price">₹129</span>
+            </div>
             <span class="pizza-hint">tap size to change</span>
           </div>
-          <button class="btn btn-red btn-full add-to-cart-btn" data-size="Small" data-price="129" onclick="addToCart(this)">
+          <button class="btn btn-red btn-full add-to-cart-btn" data-size="Small" data-price="129" data-mrp="169" onclick="addToCart(this)">
             <i class="fa-solid fa-cart-plus"></i> Add to Cart
           </button>
         </div>
@@ -309,15 +318,18 @@
           <h3 class="pizza-name">Veg Loaded</h3>
           <p class="pizza-desc">Sweet corn, olives, capsicum, onion &amp; more — loaded with goodness.</p>
           <div class="size-btns">
-            <button class="size-btn active" onclick="selectSize(this,'Small',149)">S ₹149</button>
-            <button class="size-btn"        onclick="selectSize(this,'Medium',269)">M ₹269</button>
-            <button class="size-btn"        onclick="selectSize(this,'Large',379)">L ₹379</button>
+            <button class="size-btn active" data-mrp="189" onclick="selectSize(this,'Small',149)">S ₹149</button>
+            <button class="size-btn"        data-mrp="339" onclick="selectSize(this,'Medium',269)">M ₹269</button>
+            <button class="size-btn"        data-mrp="469" onclick="selectSize(this,'Large',379)">L ₹379</button>
           </div>
           <div class="pizza-price-row">
-            <span class="pizza-price">₹149</span>
+            <div class="pizza-price-wrap">
+              <span class="pizza-mrp">₹189</span>
+              <span class="pizza-price">₹149</span>
+            </div>
             <span class="pizza-hint">tap size to change</span>
           </div>
-          <button class="btn btn-red btn-full add-to-cart-btn" data-size="Small" data-price="149" onclick="addToCart(this)">
+          <button class="btn btn-red btn-full add-to-cart-btn" data-size="Small" data-price="149" data-mrp="189" onclick="addToCart(this)">
             <i class="fa-solid fa-cart-plus"></i> Add to Cart
           </button>
         </div>
@@ -329,15 +341,18 @@
           <h3 class="pizza-name">Paneer Special</h3>
           <p class="pizza-desc">Tender paneer tikka, capsicum &amp; onion — charcoal-fired perfection.</p>
           <div class="size-btns">
-            <button class="size-btn active" onclick="selectSize(this,'Small',159)">S ₹159</button>
-            <button class="size-btn"        onclick="selectSize(this,'Medium',279)">M ₹279</button>
-            <button class="size-btn"        onclick="selectSize(this,'Large',399)">L ₹399</button>
+            <button class="size-btn active" data-mrp="199" onclick="selectSize(this,'Small',159)">S ₹159</button>
+            <button class="size-btn"        data-mrp="349" onclick="selectSize(this,'Medium',279)">M ₹279</button>
+            <button class="size-btn"        data-mrp="499" onclick="selectSize(this,'Large',399)">L ₹399</button>
           </div>
           <div class="pizza-price-row">
-            <span class="pizza-price">₹159</span>
+            <div class="pizza-price-wrap">
+              <span class="pizza-mrp">₹199</span>
+              <span class="pizza-price">₹159</span>
+            </div>
             <span class="pizza-hint">tap size to change</span>
           </div>
-          <button class="btn btn-red btn-full add-to-cart-btn" data-size="Small" data-price="159" onclick="addToCart(this)">
+          <button class="btn btn-red btn-full add-to-cart-btn" data-size="Small" data-price="159" data-mrp="199" onclick="addToCart(this)">
             <i class="fa-solid fa-cart-plus"></i> Add to Cart
           </button>
         </div>
@@ -348,15 +363,18 @@
           <h3 class="pizza-name">Cheese Burst</h3>
           <p class="pizza-desc">Extra cheese filled crust, double cheese topping. Cheese lovers rejoice!</p>
           <div class="size-btns">
-            <button class="size-btn active" onclick="selectSize(this,'Small',169)">S ₹169</button>
-            <button class="size-btn"        onclick="selectSize(this,'Medium',299)">M ₹299</button>
-            <button class="size-btn"        onclick="selectSize(this,'Large',429)">L ₹429</button>
+            <button class="size-btn active" data-mrp="219" onclick="selectSize(this,'Small',169)">S ₹169</button>
+            <button class="size-btn"        data-mrp="379" onclick="selectSize(this,'Medium',299)">M ₹299</button>
+            <button class="size-btn"        data-mrp="539" onclick="selectSize(this,'Large',429)">L ₹429</button>
           </div>
           <div class="pizza-price-row">
-            <span class="pizza-price">₹169</span>
+            <div class="pizza-price-wrap">
+              <span class="pizza-mrp">₹219</span>
+              <span class="pizza-price">₹169</span>
+            </div>
             <span class="pizza-hint">tap size to change</span>
           </div>
-          <button class="btn btn-red btn-full add-to-cart-btn" data-size="Small" data-price="169" onclick="addToCart(this)">
+          <button class="btn btn-red btn-full add-to-cart-btn" data-size="Small" data-price="169" data-mrp="219" onclick="addToCart(this)">
             <i class="fa-solid fa-cart-plus"></i> Add to Cart
           </button>
         </div>
@@ -367,15 +385,18 @@
           <h3 class="pizza-name">Corn Delight</h3>
           <p class="pizza-desc">Sweet golden corn &amp; cream cheese drizzle — light, fresh and satisfying.</p>
           <div class="size-btns">
-            <button class="size-btn active" onclick="selectSize(this,'Small',119)">S ₹119</button>
-            <button class="size-btn"        onclick="selectSize(this,'Medium',229)">M ₹229</button>
-            <button class="size-btn"        onclick="selectSize(this,'Large',329)">L ₹329</button>
+            <button class="size-btn active" data-mrp="149" onclick="selectSize(this,'Small',119)">S ₹119</button>
+            <button class="size-btn"        data-mrp="289" onclick="selectSize(this,'Medium',229)">M ₹229</button>
+            <button class="size-btn"        data-mrp="419" onclick="selectSize(this,'Large',329)">L ₹329</button>
           </div>
           <div class="pizza-price-row">
-            <span class="pizza-price">₹119</span>
+            <div class="pizza-price-wrap">
+              <span class="pizza-mrp">₹149</span>
+              <span class="pizza-price">₹119</span>
+            </div>
             <span class="pizza-hint">tap size to change</span>
           </div>
-          <button class="btn btn-red btn-full add-to-cart-btn" data-size="Small" data-price="119" onclick="addToCart(this)">
+          <button class="btn btn-red btn-full add-to-cart-btn" data-size="Small" data-price="119" data-mrp="149" onclick="addToCart(this)">
             <i class="fa-solid fa-cart-plus"></i> Add to Cart
           </button>
         </div>

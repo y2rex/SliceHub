@@ -43,13 +43,26 @@ function calculateDelivery(subtotal) {
 }
 
 function calculateSavings(subtotal, discount) {
+    var itemSavings = cart.items.reduce(function (sum, item) {
+        if (item.mrp && item.mrp > item.price) {
+            return sum + (item.mrp - item.price) * item.quantity;
+        }
+        return sum;
+    }, 0);
     var deliverySavings = subtotal >= 299 && subtotal > 0 ? 40 : 0;
-    return { discount: discount, deliverySavings: deliverySavings, total: discount + deliverySavings };
+    return {
+        items:    itemSavings,
+        discount: discount,
+        delivery: deliverySavings,
+        total:    itemSavings + discount + deliverySavings
+    };
 }
 
 function calculateSavingsPercentage(subtotal, savings) {
     if (savings.total === 0) return 0;
-    var baseAmount = subtotal + (savings.deliverySavings > 0 ? 40 : 0);
+    // Base = what user would pay at full MRP with delivery
+    var mrpSubtotal = subtotal + savings.items;
+    var baseAmount  = mrpSubtotal + (savings.delivery > 0 ? 40 : 0);
     return Math.round((savings.total / baseAmount) * 100);
 }
 
@@ -58,6 +71,7 @@ function addComboToCart(btn) {
     var name  = btn.dataset.name;
     var emoji = btn.dataset.emoji;
     var price = parseInt(btn.dataset.price, 10);
+    var mrp   = parseInt(btn.dataset.mrp,   10) || price;
     var note  = btn.dataset.note;
 
     var existing = null;
@@ -70,7 +84,7 @@ function addComboToCart(btn) {
     if (existing) {
         existing.quantity++;
     } else {
-        cart.items.push({ name: name, emoji: emoji, size: 'Combo', price: price, quantity: 1, note: note });
+        cart.items.push({ name: name, emoji: emoji, size: 'Combo', price: price, mrp: mrp, quantity: 1, note: note });
     }
 
     saveCart();
@@ -87,6 +101,7 @@ function addToCart(btn) {
     var emoji = card.querySelector('.pizza-emoji').textContent.trim();
     var size  = btn.dataset.size;
     var price = parseInt(btn.dataset.price, 10);
+    var mrp   = parseInt(btn.dataset.mrp,   10) || price;
 
     var existing = null;
     for (var i = 0; i < cart.items.length; i++) {
@@ -98,7 +113,7 @@ function addToCart(btn) {
     if (existing) {
         existing.quantity++;
     } else {
-        cart.items.push({ name: name, emoji: emoji, size: size, price: price, quantity: 1 });
+        cart.items.push({ name: name, emoji: emoji, size: size, price: price, mrp: mrp, quantity: 1 });
     }
 
     saveCart();
@@ -198,7 +213,12 @@ function renderCart() {
                     '<span class="cart-item-emoji">' + item.emoji + '</span>' +
                     '<div class="cart-item-details">' +
                         '<div class="cart-item-name">' + item.name + '</div>' +
-                        '<div class="cart-item-size">' + (item.note ? item.note : item.size + ' \u2022 \u20B9' + item.price + ' each') + '</div>' +
+                        '<div class="cart-item-size">' +
+                            (item.note ? item.note : item.size) +
+                            (item.mrp && item.mrp > item.price
+                                ? ' \u2022 <s class="cart-item-mrp">\u20B9' + item.mrp + '</s> <span class="cart-item-price-each">\u20B9' + item.price + '</span>'
+                                : ' \u2022 \u20B9' + item.price + ' each') +
+                        '</div>' +
                     '</div>' +
                 '</div>' +
                 '<div class="qty-controls">' +
@@ -244,9 +264,21 @@ function renderCart() {
         deliveryRow = '';
     }
 
+    var savingsBreakdown = '';
+    if (savings.items > 0)    savingsBreakdown += '<span class="savings-chip">MRP \u2212\u20B9' + savings.items + '</span>';
+    if (savings.discount > 0) savingsBreakdown += '<span class="savings-chip">Coupon \u2212\u20B9' + savings.discount + '</span>';
+    if (savings.delivery > 0) savingsBreakdown += '<span class="savings-chip">Free Delivery \u2212\u20B9' + savings.delivery + '</span>';
+
     var savingsBadge = savings.total > 0
         ? '<div class="savings-badge" id="savingsBadge">' +
-              '\uD83C\uDF89 You saved \u20B9' + savings.total + ' (' + savingsPct + '%) on this order!' +
+              '<div class="savings-badge-top">' +
+                  '<span class="savings-icon">\uD83C\uDF89</span>' +
+                  '<div class="savings-text">' +
+                      '<span class="savings-label">Total Savings</span>' +
+                      '<span class="savings-amount">\u20B9' + savings.total + ' <span class="savings-pct">(' + savingsPct + '% off)</span></span>' +
+                  '</div>' +
+              '</div>' +
+              (savingsBreakdown ? '<div class="savings-chips">' + savingsBreakdown + '</div>' : '') +
           '</div>'
         : '';
 
@@ -283,15 +315,28 @@ function generateWhatsAppMessage() {
 
     var savings    = calculateSavings(subtotal, discount);
     var savingsPct = calculateSavingsPercentage(subtotal, savings);
+    var div = '\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501';
 
-    var msg = '\uD83E\uDDFE SliceHub Order Summary\n\nItems:\n' + lines.join('\n') + '\n\n';
-    msg += 'Subtotal: \u20B9' + subtotal + '\n';
-    if (discount > 0) msg += 'Discount (SLICE10): \u2212\u20B9' + discount + '\n';
-    msg += 'Delivery: ' + (delivery === 0 ? 'FREE' : '\u20B9' + delivery) + '\n';
-    msg += '------------------------\n';
-    msg += 'Total: \u20B9' + total + '\n';
-    if (savings.total > 0) msg += '\n\uD83C\uDF89 You saved \u20B9' + savings.total + ' (' + savingsPct + '%)\n';
-    msg += '\n\uD83D\uDCCD Please share your delivery address.';
+    var msg = '\uD83C\uDF55 *SliceHub* \u2014 New Order\n';
+    msg += '_Charcoal Fired Goodness | Purnea_\n\n';
+    msg += div + '\n';
+    msg += '*\uD83D\uDED2 Your Items*\n';
+    msg += div + '\n\n';
+    msg += lines.join('\n') + '\n\n';
+    msg += div + '\n';
+    msg += '*\uD83D\uDCB0 Bill Summary*\n';
+    msg += div + '\n\n';
+    msg += 'Subtotal          \u20B9' + subtotal + '\n';
+    if (discount > 0) msg += 'Coupon (SLICE10)  \u2212\u20B9' + discount + '\n';
+    msg += 'Delivery          ' + (delivery === 0 ? 'FREE \u2713' : '\u20B9' + delivery) + '\n\n';
+    msg += '*Total            \u20B9' + total + '*\n\n';
+    if (savings.total > 0) {
+        msg += '\uD83C\uDF89 *You saved \u20B9' + savings.total + ' (' + savingsPct + '%) on this order!*\n\n';
+    }
+    msg += div + '\n';
+    msg += '\uD83D\uDCCD Please share your *delivery address* to confirm.\n\n';
+    msg += 'Thank you for choosing *SliceHub*! \uD83D\uDE4F\n';
+    msg += '_Hot, Fresh & Charcoal Fired_ \uD83D\uDD25';
     return msg;
 }
 
@@ -322,10 +367,14 @@ function selectSize(btn, size, price) {
     card.querySelectorAll('.size-btn').forEach(function (b) { b.classList.remove('active'); });
     btn.classList.add('active');
     card.querySelector('.pizza-price').textContent = '\u20B9' + price;
+    var mrp = parseInt(btn.dataset.mrp, 10);
+    var mrpEl = card.querySelector('.pizza-mrp');
+    if (mrpEl && mrp) mrpEl.textContent = '\u20B9' + mrp;
     var addBtn = card.querySelector('.add-to-cart-btn');
     if (addBtn) {
         addBtn.dataset.size  = size;
         addBtn.dataset.price = price;
+        if (mrp) addBtn.dataset.mrp = mrp;
     }
 }
 
