@@ -50,14 +50,30 @@ function applyAvailability() {
     var name = card.dataset.name;
     if (isItemAvailable(name)) return;
     card.classList.add("unavailable");
+
+    // Show MRP on size buttons instead of listed price
     card.querySelectorAll(".size-btn").forEach(function (b) {
       b.disabled = true;
+      var mrp = b.dataset.mrp;
+      if (mrp) {
+        var label = b.textContent.trim().charAt(0); // 'S', 'M', or 'L'
+        b.textContent = label + " \u20B9" + mrp;
+      }
     });
+
+    // Show MRP in price display (hide strikethrough, replace listed price)
+    var activeBtn = card.querySelector(".size-btn.active");
+    if (activeBtn && activeBtn.dataset.mrp) {
+      var mrpEl = card.querySelector(".pizza-mrp");
+      var priceEl = card.querySelector(".pizza-price");
+      if (mrpEl) mrpEl.style.display = "none";
+      if (priceEl) priceEl.textContent = "\u20B9" + activeBtn.dataset.mrp;
+    }
+
     var addBtn = card.querySelector(".add-to-cart-btn");
     if (addBtn) {
       addBtn.disabled = true;
-      addBtn.innerHTML =
-        '<i class="fa-solid fa-ban"></i> Currently Unavailable';
+      addBtn.innerHTML = '<i class="fa-solid fa-ban"></i> Currently Unavailable';
       addBtn.classList.add("btn-unavailable");
     }
   });
@@ -69,6 +85,15 @@ function applyAvailability() {
     var name = btn.dataset.name;
     if (isComboAvailable(name)) return;
     card.classList.add("unavailable");
+
+    // Show original/MRP price, hide deal price
+    var priceEl = card.querySelector(".combo-price");
+    var originalEl = card.querySelector(".combo-original");
+    if (priceEl && originalEl) {
+      priceEl.textContent = originalEl.textContent;
+      originalEl.style.display = "none";
+    }
+
     btn.disabled = true;
     btn.innerHTML = '<i class="fa-solid fa-ban"></i> Currently Unavailable';
     btn.classList.add("btn-unavailable");
@@ -187,11 +212,7 @@ function onPincodeInput(input) {
       '" target="_blank">Chat with us \u2192</a>';
     if (checkoutBarEl) {
       checkoutBarEl.innerHTML =
-        '<a href="https://wa.me/' +
-        WA_NUMBER +
-        "?text=" +
-        encodeURIComponent(generateChatWithUsMessage(raw)) +
-        '" target="_blank" class="btn-checkout-wa"><i class="fa-brands fa-whatsapp"></i> Chat with Us</a>';
+        '<button class="btn-checkout-wa" disabled><i class="fa-brands fa-whatsapp"></i> Checkout on WhatsApp</button>';
     }
   }
 }
@@ -587,15 +608,16 @@ function renderCart() {
 
   var checkoutBarEl = document.getElementById("cartCheckoutBar");
   if (checkoutBarEl) {
-    if (checkoutDisabled) {
+    var pincode = cart.pincode || '';
+    var isInvalidServiceArea = pincode.length === 6 && !pincodeResult.valid;
+    if (isInvalidServiceArea) {
       checkoutBarEl.innerHTML =
-        '<a href="https://wa.me/' +
-        WA_NUMBER +
-        "?text=" +
-        encodeURIComponent(generateChatWithUsMessage(cart.pincode || "")) +
-        '" target="_blank" class="btn-checkout-wa">' +
-        '<i class="fa-brands fa-whatsapp"></i> Chat with Us' +
-        "</a>";
+        '<button class="btn-checkout-wa" disabled><i class="fa-brands fa-whatsapp"></i> Checkout on WhatsApp</button>';
+    } else if (checkoutDisabled) {
+      checkoutBarEl.innerHTML =
+        '<button id="checkoutBtn" class="btn-checkout-wa" disabled>' +
+        '<i class="fa-brands fa-whatsapp"></i> Checkout on WhatsApp' +
+        "</button>";
     } else {
       checkoutBarEl.innerHTML =
         '<button id="checkoutBtn" class="btn-checkout-wa" onclick="checkoutWhatsApp()">' +
