@@ -79,9 +79,9 @@ function generalOrderURL() {
   var msg =
     "Hi SliceHub! \uD83D\uDC4B\n" +
     "I\u2019d like to place an order.\n" +
-    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n" +
+    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n" +
     "\uD83D\uDCCB MENU\n" +
-    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n" +
+    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n" +
     "\uD83C\uDF55 Pizzas:\n" +
     "1. Margherita \u2014 S \u20B999 | M \u20B9199 | L \u20B9299\n" +
     "2. Farmhouse \u2014 S \u20B9129 | M \u20B9249 | L \u20B9349\n" +
@@ -93,18 +93,18 @@ function generalOrderURL() {
     "\u2022 Starter Combo \u2014 \u20B9199\n" +
     "\u2022 Double Treat \u2014 \u20B9299\n" +
     "\u2022 Family Combo \u2014 \u20B9399\n" +
-    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n" +
+    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n" +
     "\u270D\uFE0F MY ORDER\n" +
-    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n" +
+    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n" +
     "(Please type your order like this \uD83D\uDC47)\n" +
     "Item Name + Size + Quantity\n" +
     "Example:\n" +
     "Margherita (Medium) x2\n" +
     "Garlic Bread x1\n" +
-    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n" +
+    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n" +
     "\uD83D\uDCCD Delivery Address: ______\n" +
     "\uD83D\uDCB3 Payment Mode: COD / UPI\n" +
-    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n" +
+    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n" +
     "Please confirm availability & delivery time. Thanks! \uD83D\uDE0A";
   return "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(msg);
 }
