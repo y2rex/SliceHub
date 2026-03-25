@@ -59,10 +59,12 @@ function calculateSavings(subtotal, discount) {
 }
 
 function calculateSavingsPercentage(subtotal, savings) {
-    if (savings.total === 0) return 0;
-    // Base = what user would pay at full MRP with delivery
+    if (savings.total === 0 || subtotal === 0) return 0;
+    // Base = what user would pay at full MRP + standard ₹40 delivery
+    // ₹40 is always included regardless of free delivery eligibility,
+    // because that is the "without savings" reference price
     var mrpSubtotal = subtotal + savings.items;
-    var baseAmount  = mrpSubtotal + (savings.delivery > 0 ? 40 : 0);
+    var baseAmount  = mrpSubtotal + 40;
     return Math.round((savings.total / baseAmount) * 100);
 }
 
@@ -315,28 +317,15 @@ function generateWhatsAppMessage() {
 
     var savings    = calculateSavings(subtotal, discount);
     var savingsPct = calculateSavingsPercentage(subtotal, savings);
-    var div = '\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501';
 
-    var msg = '\uD83C\uDF55 *SliceHub* \u2014 New Order\n';
-    msg += '_Charcoal Fired Goodness | Purnea_\n\n';
-    msg += div + '\n';
-    msg += '*\uD83D\uDED2 Your Items*\n';
-    msg += div + '\n\n';
-    msg += lines.join('\n') + '\n\n';
-    msg += div + '\n';
-    msg += '*\uD83D\uDCB0 Bill Summary*\n';
-    msg += div + '\n\n';
-    msg += 'Subtotal          \u20B9' + subtotal + '\n';
-    if (discount > 0) msg += 'Coupon (SLICE10)  \u2212\u20B9' + discount + '\n';
-    msg += 'Delivery          ' + (delivery === 0 ? 'FREE \u2713' : '\u20B9' + delivery) + '\n\n';
-    msg += '*Total            \u20B9' + total + '*\n\n';
-    if (savings.total > 0) {
-        msg += '\uD83C\uDF89 *You saved \u20B9' + savings.total + ' (' + savingsPct + '%) on this order!*\n\n';
-    }
-    msg += div + '\n';
-    msg += '\uD83D\uDCCD Please share your *delivery address* to confirm.\n\n';
-    msg += 'Thank you for choosing *SliceHub*! \uD83D\uDE4F\n';
-    msg += '_Hot, Fresh & Charcoal Fired_ \uD83D\uDD25';
+    var msg = '\uD83E\uDDFE SliceHub Order Summary\n\nItems:\n' + lines.join('\n') + '\n\n';
+    msg += 'Subtotal: \u20B9' + subtotal + '\n';
+    if (discount > 0) msg += 'Discount \uD83C\uDFF7\uFE0F (SLICE10): \u2212\u20B9' + discount + '\n';
+    msg += 'Delivery: ' + (delivery === 0 ? 'FREE \uD83D\uDE9A' : '\u20B9' + delivery) + '\n';
+    msg += '------------------------\n';
+    msg += 'Total: \u20B9' + total + '\n';
+    if (savings.total > 0) msg += '\n\uD83C\uDF89 You saved \u20B9' + savings.total + ' (' + savingsPct + '%)\n';
+    msg += '\n\uD83D\uDCCD Please share your delivery address.';
     return msg;
 }
 
