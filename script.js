@@ -92,7 +92,7 @@ function generalOrderURL() {
     "\uD83C\uDF89 Combo Deals:\n" +
     "\u2022 Starter Combo \u2014 \u20B9199\n" +
     "\u2022 Double Treat \u2014 \u20B9299\n" +
-    "\u2022 Family Combo \u2014 \u20B9399\n" +
+    "\u2022 Family Combo \u2014 \u20B9399\n\n" +
     "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n" +
     "\u270D\uFE0F MY ORDER\n" +
     "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n" +
@@ -104,7 +104,7 @@ function generalOrderURL() {
     "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n" +
     "\uD83D\uDCCD Delivery Address: ______\n" +
     "\uD83D\uDCB3 Payment Mode: COD / UPI\n" +
-    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n" +
+    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n" +
     "Please confirm availability & delivery time. Thanks! \uD83D\uDE0A";
   return "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(msg);
 }
