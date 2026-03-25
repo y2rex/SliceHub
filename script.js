@@ -401,6 +401,13 @@ function renderCart() {
       '<p class="cart-empty-sub">Select a pizza and tap \u201CAdd to Cart\u201D</p>' +
       "</div>";
     footerEl.innerHTML = "";
+    var emptyBarEl = document.getElementById('cartCheckoutBar');
+    if (emptyBarEl) {
+        emptyBarEl.innerHTML =
+            '<button class="btn-checkout-wa" disabled>' +
+                '<i class="fa-brands fa-whatsapp"></i> Checkout on WhatsApp' +
+            '</button>';
+    }
     return;
   }
 
