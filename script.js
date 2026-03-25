@@ -16,12 +16,61 @@ function generalOrderURL() {
 
 let cart = loadCart();
 
+// ---- Serviceable pincodes ----
+var SERVICEABLE_PINCODES = {
+    '854301': 'Purnea City',
+    '854302': 'Purnea East',
+    '854303': 'Purnea West',
+    '854304': 'Kasba Road',
+    '854305': 'Line Bazar',
+    '854315': 'Baisi',
+    '854316': 'Kasba'
+};
+
 function loadCart() {
     try {
         const saved = localStorage.getItem('slicehub_cart');
-        return saved ? JSON.parse(saved) : { items: [], couponApplied: false };
+        return saved ? JSON.parse(saved) : { items: [], couponApplied: false, pincode: '' };
     } catch (e) {
-        return { items: [], couponApplied: false };
+        return { items: [], couponApplied: false, pincode: '' };
+    }
+}
+
+function validatePincode(code) {
+    var str = String(code).trim();
+    if (str.length !== 6) return { valid: false, areaName: '' };
+    var area = SERVICEABLE_PINCODES[str];
+    return area ? { valid: true, areaName: area } : { valid: false, areaName: '' };
+}
+
+// Called oninput on the pincode field — updates state without full re-render
+function onPincodeInput(input) {
+    var raw = input.value.replace(/\D/g, '').slice(0, 6);
+    input.value = raw;
+    cart.pincode = raw;
+    saveCart();
+
+    var statusEl  = document.getElementById('pincodeStatus');
+    var checkoutBtn = document.getElementById('checkoutBtn');
+    if (!statusEl || !checkoutBtn) return;
+
+    if (raw.length < 6) {
+        statusEl.className = 'pincode-status';
+        statusEl.innerHTML = '';
+        checkoutBtn.disabled = true;
+        return;
+    }
+
+    var result = validatePincode(raw);
+    if (result.valid) {
+        statusEl.className = 'pincode-status valid';
+        statusEl.innerHTML = '\u2705 ' + result.areaName + ' \u2014 We deliver here!';
+        checkoutBtn.disabled = false;
+    } else {
+        statusEl.className = 'pincode-status invalid';
+        statusEl.innerHTML = '\u274C We don\u2019t deliver here yet. ' +
+            '<a href="https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent('Hi SliceHub! I\u2019d like to check if you deliver to pincode ' + raw + '.') + '" target="_blank">Chat with us \u2192</a>';
+        checkoutBtn.disabled = true;
     }
 }
 
@@ -284,10 +333,33 @@ function renderCart() {
           '</div>'
         : '';
 
+    var pincodeResult  = validatePincode(cart.pincode || '');
+    var checkoutDisabled = !pincodeResult.valid;
+
+    var pincodeStatusHTML = '';
+    if ((cart.pincode || '').length === 6) {
+        if (pincodeResult.valid) {
+            pincodeStatusHTML = '<p id="pincodeStatus" class="pincode-status valid">\u2705 ' + pincodeResult.areaName + ' \u2014 We deliver here!</p>';
+        } else {
+            pincodeStatusHTML = '<p id="pincodeStatus" class="pincode-status invalid">\u274C We don\u2019t deliver here yet. ' +
+                '<a href="https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent('Hi SliceHub! I\u2019d like to check if you deliver to pincode ' + (cart.pincode || '') + '.') + '" target="_blank">Chat with us \u2192</a></p>';
+        }
+    } else {
+        pincodeStatusHTML = '<p id="pincodeStatus" class="pincode-status"></p>';
+    }
+
     footerEl.innerHTML =
         '<button class="coupon-btn' + (cart.couponApplied ? ' applied' : '') + '" onclick="toggleCoupon()">' +
             (cart.couponApplied ? '\u2705 SLICE10 Applied \u2014 10% OFF' : '\uD83C\uDFF7\uFE0F Apply SLICE10 (10% OFF for New Users)') +
         '</button>' +
+        '<div class="pincode-section">' +
+            '<label class="pincode-label">\uD83D\uDCCD Delivery Pincode</label>' +
+            '<input id="pincodeInput" class="pincode-input" type="text" inputmode="numeric" maxlength="6"' +
+                ' placeholder="Enter 6-digit pincode"' +
+                ' value="' + (cart.pincode || '') + '"' +
+                ' oninput="onPincodeInput(this)" />' +
+            pincodeStatusHTML +
+        '</div>' +
         '<div class="cart-summary">' +
             '<div class="summary-row"><span>Subtotal</span><span>\u20B9' + subtotal + '</span></div>' +
             discountRow +
@@ -296,7 +368,7 @@ function renderCart() {
             '<div class="summary-row total-row"><span>Total</span><span>\u20B9' + total + '</span></div>' +
         '</div>' +
         savingsBadge +
-        '<button class="btn-checkout-wa" onclick="checkoutWhatsApp()">' +
+        '<button id="checkoutBtn" class="btn-checkout-wa" onclick="checkoutWhatsApp()"' + (checkoutDisabled ? ' disabled' : '') + '>' +
             '<i class="fa-brands fa-whatsapp"></i> Checkout on WhatsApp' +
         '</button>';
 }
@@ -325,12 +397,19 @@ function generateWhatsAppMessage() {
     msg += '------------------------\n';
     msg += 'Total: \u20B9' + total + '\n';
     if (savings.total > 0) msg += '\n\uD83C\uDF89 You saved \u20B9' + savings.total + ' (' + savingsPct + '%)\n';
-    msg += '\n\uD83D\uDCCD Please share your delivery address.';
+    var pincodeResult = validatePincode(cart.pincode || '');
+    if (pincodeResult.valid) {
+        msg += '\n\uD83D\uDCCD Delivery Pincode: ' + cart.pincode + ' (' + pincodeResult.areaName + ')';
+        msg += '\nPlease share your full delivery address.';
+    } else {
+        msg += '\n\uD83D\uDCCD Please share your delivery address.';
+    }
     return msg;
 }
 
 function checkoutWhatsApp() {
     if (cart.items.length === 0) return;
+    if (!validatePincode(cart.pincode || '').valid) return;
     var url = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(generateWhatsAppMessage());
     window.open(url, '_blank');
 }

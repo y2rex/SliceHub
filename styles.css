@@ -1438,6 +1438,47 @@ body.cart-open .cart-drawer { transform: translateX(0); }
   animation: savingsPop 0.3s ease both;
 }
 
+/* ---- Pincode validation ---- */
+.pincode-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.pincode-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--dim);
+  letter-spacing: 0.02em;
+}
+.pincode-input {
+  width: 100%;
+  background: rgba(255,255,255,0.06);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 10px 14px;
+  letter-spacing: 0.1em;
+  transition: border-color var(--transition), background var(--transition);
+  outline: none;
+}
+.pincode-input::placeholder { color: rgba(255,255,255,0.25); letter-spacing: 0; font-weight: 400; }
+.pincode-input:focus { border-color: var(--red); background: rgba(255,255,255,0.09); }
+.pincode-status {
+  font-size: 0.78rem;
+  font-weight: 600;
+  min-height: 18px;
+  transition: all var(--transition);
+}
+.pincode-status.valid   { color: #4ade80; }
+.pincode-status.invalid { color: #f87171; }
+.pincode-status.invalid a {
+  color: #fbbf24;
+  text-decoration: underline;
+}
+
 /* ---- Delivery hint update ---- */
 .delivery-hint {
   font-size: 0.75rem;
