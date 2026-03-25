@@ -450,6 +450,29 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .pizza-card.bestseller { border-color: rgba(220,38,38,0.35); }
 
+/* ---- Unavailable state ---- */
+.pizza-card.unavailable,
+.combo-card.unavailable {
+  opacity: 0.55;
+  filter: grayscale(40%);
+}
+.pizza-card.unavailable:hover,
+.combo-card.unavailable:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--border);
+}
+.pizza-card.unavailable .size-btn,
+.btn-unavailable {
+  cursor: not-allowed !important;
+  pointer-events: none;
+}
+.btn-unavailable {
+  background: #374151 !important;
+  color: #9ca3af !important;
+  border-color: transparent !important;
+}
+
 .pizza-ribbon {
   position: absolute;
   top: 0; right: 0;
@@ -1095,15 +1118,21 @@ body.cart-open .cart-drawer { transform: translateX(0); }
 }
 .cart-close:hover { background: rgba(255,255,255,0.16); }
 
-/* ---- Cart items list ---- */
-.cart-items {
+/* ---- Cart body (scrollable zone: items + footer) ---- */
+.cart-body {
   flex: 1;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+.cart-body::-webkit-scrollbar { width: 4px; }
+.cart-body::-webkit-scrollbar-track { background: transparent; }
+.cart-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* ---- Cart items list ---- */
+.cart-items {
   padding: 12px 0;
 }
-.cart-items::-webkit-scrollbar { width: 4px; }
-.cart-items::-webkit-scrollbar-track { background: transparent; }
-.cart-items::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
 /* ---- Single cart item ---- */
 .cart-item {
@@ -1196,11 +1225,19 @@ body.cart-open .cart-drawer { transform: translateX(0); }
 .cart-empty-title { font-weight: 700; font-size: 1rem; margin-bottom: 8px; }
 .cart-empty-sub { color: var(--muted); font-size: 0.85rem; }
 
-/* ---- Cart footer ---- */
+/* ---- Cart checkout bar (pinned at bottom) ---- */
+.cart-checkout-bar {
+  flex-shrink: 0;
+  padding: 12px 20px 16px;
+  border-top: 1px solid var(--border);
+  background: var(--darker);
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.3);
+}
+
+/* ---- Cart footer (scrolls with cart-body) ---- */
 .cart-footer {
   border-top: 1px solid var(--border);
   padding: 16px 20px 20px;
-  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   gap: 12px;
