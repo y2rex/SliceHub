@@ -73,7 +73,8 @@ function applyAvailability() {
     var addBtn = card.querySelector(".add-to-cart-btn");
     if (addBtn) {
       addBtn.disabled = true;
-      addBtn.innerHTML = '<i class="fa-solid fa-ban"></i> Currently Unavailable';
+      addBtn.innerHTML =
+        '<i class="fa-solid fa-ban"></i> Currently Unavailable';
       addBtn.classList.add("btn-unavailable");
     }
   });
@@ -422,12 +423,12 @@ function renderCart() {
       '<p class="cart-empty-sub">Select a pizza and tap \u201CAdd to Cart\u201D</p>' +
       "</div>";
     footerEl.innerHTML = "";
-    var emptyBarEl = document.getElementById('cartCheckoutBar');
+    var emptyBarEl = document.getElementById("cartCheckoutBar");
     if (emptyBarEl) {
-        emptyBarEl.innerHTML =
-            '<button class="btn-checkout-wa" disabled>' +
-                '<i class="fa-brands fa-whatsapp"></i> Checkout on WhatsApp' +
-            '</button>';
+      emptyBarEl.innerHTML =
+        '<button class="btn-checkout-wa" disabled>' +
+        '<i class="fa-brands fa-whatsapp"></i> Checkout on WhatsApp' +
+        "</button>";
     }
     return;
   }
@@ -608,7 +609,7 @@ function renderCart() {
 
   var checkoutBarEl = document.getElementById("cartCheckoutBar");
   if (checkoutBarEl) {
-    var pincode = cart.pincode || '';
+    var pincode = cart.pincode || "";
     var isInvalidServiceArea = pincode.length === 6 && !pincodeResult.valid;
     if (isInvalidServiceArea) {
       checkoutBarEl.innerHTML =
@@ -990,18 +991,18 @@ document.addEventListener("DOMContentLoaded", function () {
   // ============================================
   // Contact Form — dynamic email subject
   // ============================================
-  var typeSelect = document.getElementById('f-type');
+  var typeSelect = document.getElementById("f-type");
   if (typeSelect) {
     var subjectMap = {
-      'Feedback':      '[SliceHub] Feedback / Review',
-      'Order Enquiry': '[SliceHub] Order Enquiry',
-      'Complaint':     '[SliceHub] Complaint',
-      'Other':         '[SliceHub] Other Message',
+      Feedback: "Review",
+      "Order Enquiry": "Order Enquiry",
+      Complaint: "Complaint",
+      Other: "Other Message",
     };
-    typeSelect.addEventListener('change', function () {
-      var subjectField = document.getElementById('f-subject');
+    typeSelect.addEventListener("change", function () {
+      var subjectField = document.getElementById("f-subject");
       if (subjectField) {
-        subjectField.value = subjectMap[this.value] || '[SliceHub] New Message';
+        subjectField.value = subjectMap[this.value] || "[SliceHub] New Message";
       }
     });
   }
