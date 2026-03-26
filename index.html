@@ -713,9 +713,10 @@
               method="POST">
 
           <!-- formsubmit.co config -->
-          <input type="hidden" name="_subject"  value="New message from SliceHub website" />
+          <input type="hidden" name="_subject"  id="f-subject" value="[SliceHub] New Message" />
           <input type="hidden" name="_captcha"  value="false" />
           <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_next"     value="https://slicehub.in/thankyou.html" />
           <!-- Honeypot (anti-spam) -->
           <input type="text"   name="_honey"    style="display:none" />
 
@@ -730,15 +731,23 @@
             </div>
           </div>
 
-          <div class="form-group">
-            <label class="form-label" for="f-type">Message Type <span class="form-required">*</span></label>
-            <select class="form-input form-select" id="f-type" name="type" required>
-              <option value="" disabled selected>Select a reason…</option>
-              <option value="Feedback">⭐ Feedback / Review</option>
-              <option value="Order Enquiry">🍕 Order Enquiry</option>
-              <option value="Complaint">⚠️ Complaint</option>
-              <option value="Other">💬 Other</option>
-            </select>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="f-mobile">Mobile Number <span style="opacity:.6;font-size:.8em;font-weight:400">(optional)</span></label>
+              <input class="form-input" type="tel" id="f-mobile" name="mobile"
+                     placeholder="e.g. +91 98765 43210"
+                     pattern="[+\d\s\-()\u00B7]{7,20}" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="f-type">Message Type <span class="form-required">*</span></label>
+              <select class="form-input form-select" id="f-type" name="type" required>
+                <option value="" disabled selected>Select a reason…</option>
+                <option value="Feedback">⭐ Feedback / Review</option>
+                <option value="Order Enquiry">🍕 Order Enquiry</option>
+                <option value="Complaint">⚠️ Complaint</option>
+                <option value="Other">💬 Other</option>
+              </select>
+            </div>
           </div>
 
           <div class="form-group">

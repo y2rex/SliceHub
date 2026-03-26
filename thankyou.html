@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You — SliceHub</title>
+  <meta name="robots" content="noindex" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    .thankyou-section {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 1.5rem;
+    }
+    .thankyou-card {
+      max-width: 520px;
+      width: 100%;
+    }
+    .thankyou-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #28a745, #20c840);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 2rem;
+      color: #fff;
+    }
+    .thankyou-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: .75rem;
+    }
+    .thankyou-sub {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    .thankyou-sub strong {
+      color: var(--white);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+  ============================================================ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo-wrap">
+        <img src="logo.png" alt="SliceHub Logo" class="logo-img" />
+        <div class="logo-text">
+          <span class="logo-tagline">Charcoal Fired Goodness</span>
+          <span class="logo-location">Purnea, Bihar</span>
+        </div>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       THANK YOU SECTION
+  ============================================================ -->
+  <section class="thankyou-section">
+    <div class="thankyou-card">
+      <div class="thankyou-icon">
+        <i class="fa-solid fa-check"></i>
+      </div>
+      <h1 class="thankyou-title">Thank You!</h1>
+      <p class="thankyou-sub">
+        We've received your message and will get back to you
+        <strong>within a few hours</strong> via email or WhatsApp.
+        <br /><br />
+        In the meantime, feel free to browse our menu or reach out directly.
+      </p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="index.html" class="btn btn-red">
+          <i class="fa-solid fa-house"></i> Back to Home
+        </a>
+        <a href="https://wa.me/917367013432?text=Hi%20SliceHub!" target="_blank" rel="noopener noreferrer" class="btn btn-green">
+          <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <img src="logo.png" alt="SliceHub" class="footer-logo" />
+          <p class="footer-slogan">Serving happiness, one slice at a time.<br />Charcoal fired. Cloud kitchen.</p>
+        </div>
+        <div>
+          <h4 class="footer-heading">Contact</h4>
+          <ul class="footer-contact">
+            <li><i class="fa-solid fa-phone"></i><a href="tel:+917367013432">+91 73670 13432</a></li>
+            <li><i class="fa-solid fa-location-dot"></i><span>Purnea, Bihar, India</span></li>
+            <li><i class="fa-regular fa-clock"></i><span>11am – 11pm, All Days</span></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#menu"><i class="fa-solid fa-pizza-slice"></i> Our Menu</a></li>
+            <li>
+              <a href="https://www.instagram.com/slicehub.official/" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-instagram"></i> Instagram
+              </a>
+            </li>
+            <li>
+              <a href="https://wa.me/917367013432?text=Hi%20SliceHub!%20I%27d%20like%20to%20order." target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-whatsapp"></i> Order on WhatsApp
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 SliceHub. All rights reserved.</p>
+      <p>Made with <span style="color:var(--red)">♥</span> in Purnea, Bihar</p>
+    </div>
+  </footer>
+
+</body>
+</html>

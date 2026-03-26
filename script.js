@@ -987,6 +987,25 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ============================================
+  // ============================================
+  // Contact Form — dynamic email subject
+  // ============================================
+  var typeSelect = document.getElementById('f-type');
+  if (typeSelect) {
+    var subjectMap = {
+      'Feedback':      '[SliceHub] Feedback / Review',
+      'Order Enquiry': '[SliceHub] Order Enquiry',
+      'Complaint':     '[SliceHub] Complaint',
+      'Other':         '[SliceHub] Other Message',
+    };
+    typeSelect.addEventListener('change', function () {
+      var subjectField = document.getElementById('f-subject');
+      if (subjectField) {
+        subjectField.value = subjectMap[this.value] || '[SliceHub] New Message';
+      }
+    });
+  }
+
   // FAQ Accordion
   // ============================================
   document.querySelectorAll(".faq-question").forEach(function (btn) {
