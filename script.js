@@ -988,6 +988,60 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ============================================
+  // Contact Form — Indian mobile number validation
+  // ============================================
+  var mobileInput = document.getElementById('f-mobile');
+  var contactForm = mobileInput && mobileInput.closest('form');
+
+  function getIndianMobileError(val) {
+    if (!val) return null; // optional field — blank is fine
+    var digits = val.replace(/[\s\-().]/g, '');
+    if (/^\+91/.test(digits)) digits = digits.slice(3);
+    else if (/^91/.test(digits) && digits.length === 12) digits = digits.slice(2);
+    else if (/^0/.test(digits)) digits = digits.slice(1);
+    if (!/^[6-9]\d{9}$/.test(digits)) return 'Enter a valid 10-digit Indian mobile number (starts with 6–9).';
+    return null;
+  }
+
+  function showMobileError(msg) {
+    var err = document.getElementById('f-mobile-error');
+    if (msg) {
+      mobileInput.style.borderColor = 'var(--red)';
+      if (!err) {
+        err = document.createElement('p');
+        err.id = 'f-mobile-error';
+        err.style.cssText = 'color:var(--red);font-size:.8rem;margin-top:.3rem';
+        mobileInput.parentNode.appendChild(err);
+      }
+      err.textContent = msg;
+    } else {
+      mobileInput.style.borderColor = '';
+      if (err) err.remove();
+    }
+  }
+
+  if (mobileInput) {
+    mobileInput.addEventListener('blur', function () {
+      showMobileError(getIndianMobileError(this.value.trim()));
+    });
+    mobileInput.addEventListener('input', function () {
+      if (document.getElementById('f-mobile-error')) {
+        showMobileError(getIndianMobileError(this.value.trim()));
+      }
+    });
+  }
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+      var err = getIndianMobileError(mobileInput.value.trim());
+      if (err) {
+        e.preventDefault();
+        showMobileError(err);
+        mobileInput.focus();
+      }
+    });
+  }
+
   // ============================================
   // Contact Form — dynamic email subject
   // ============================================
