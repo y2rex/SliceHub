@@ -683,39 +683,59 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .faq-answer .mono  { color: var(--yellow); font-family: 'Courier New', monospace; font-weight: 900; letter-spacing: 0.06em; }
 
 /* ============================================
-   INSTAGRAM SECTION
+   FOOTER — Instagram card (in brand col)
    ============================================ */
-.instagram-inner { display: flex; flex-direction: column; align-items: center; text-align: center; }
-.qr-wrapper {
-  background: var(--white);
-  padding: 16px;
+.footer-insta-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 20px;
+  padding: 14px 16px;
   border-radius: var(--radius);
-  display: inline-block;
-  margin-bottom: 20px;
-  box-shadow: 0 14px 44px rgba(0,0,0,0.5);
+  border: 1px solid rgba(131,58,180,0.25);
+  background: linear-gradient(135deg, rgba(131,58,180,0.08) 0%, rgba(253,29,29,0.06) 100%);
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
 }
-.qr-wrapper img { width: 164px; height: 164px; display: block; object-fit: contain; }
-.qr-label {
-  color: var(--muted);
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  margin-bottom: 22px;
+.footer-insta-card:hover {
+  border-color: rgba(131,58,180,0.5);
+  box-shadow: 0 6px 24px rgba(131,58,180,0.2);
+  transform: translateY(-2px);
 }
-.btn-instagram {
-  display: inline-flex;
+.footer-insta-top {
+  display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 14px 32px;
-  border-radius: 999px;
-  font-weight: 800;
-  font-size: 1rem;
-  color: var(--white);
-  background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
-  box-shadow: 0 8px 28px rgba(131,58,180,0.4);
-  transition: transform var(--transition), box-shadow var(--transition);
+  gap: 8px;
 }
-.btn-instagram:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 14px 40px rgba(131,58,180,0.55); }
+.footer-insta-icon {
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.82rem;
+  color: #fff;
+  flex-shrink: 0;
+}
+.footer-insta-handle {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+}
+.footer-insta-desc {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.38);
+  line-height: 1.4;
+}
+.footer-insta-follow {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: linear-gradient(90deg, #c850c0, #ffcc70);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-flex; align-items: center; gap: 5px;
+  margin-top: 2px;
+}
 
 /* ============================================
    FOOTER
@@ -723,39 +743,195 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .footer {
   background: var(--darkest);
   border-top: 1px solid var(--border);
-  padding: 60px 0 0;
+  padding: 0;
 }
+
+/* --- CTA Banner --- */
+.footer-cta-banner {
+  position: relative;
+  background: linear-gradient(135deg, #1a0a0a 0%, #1f0000 50%, #1a0a0a 100%);
+  border-top: 1px solid rgba(220,38,38,0.25);
+  border-bottom: 1px solid rgba(220,38,38,0.15);
+  padding: 28px 0;
+  overflow: hidden;
+}
+.footer-cta-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 100% at 50% 50%, rgba(220,38,38,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.footer-cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.footer-cta-tag {
+  display: inline-block;
+  background: var(--red);
+  color: #fff;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 100px;
+  margin-bottom: 6px;
+}
+.footer-cta-text p {
+  color: rgba(255,255,255,0.75);
+  font-size: 0.9rem;
+}
+.footer-cta-text strong { color: #fff; }
+.footer-cta-btn {
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-size: 0.88rem;
+  padding: 12px 24px;
+}
+
+/* --- Main Grid --- */
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
   gap: 44px;
-  padding-bottom: 44px;
+  padding: 56px 0 48px;
 }
-.footer-logo   { height: 56px; width: auto; object-fit: contain; margin-bottom: 14px; }
-.footer-slogan { color: var(--muted); font-size: 0.85rem; line-height: 1.7; max-width: 240px; }
-.footer-heading { color: var(--yellow); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 18px; }
-.footer-links ul, .footer-contact ul { display: flex; flex-direction: column; gap: 12px; }
+
+/* --- Brand Col --- */
+.footer-logo   { height: 52px; width: auto; object-fit: contain; margin-bottom: 14px; }
+.footer-slogan { color: var(--muted); font-size: 0.84rem; line-height: 1.75; }
+.footer-slogan-tag {
+  display: inline-block;
+  margin-top: 6px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 100px;
+  font-size: 0.72rem;
+  padding: 2px 10px;
+  color: rgba(255,255,255,0.45);
+}
+.footer-social { display: flex; gap: 10px; margin-top: 20px; }
+.footer-social-btn {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  color: rgba(255,255,255,0.6);
+  transition: all var(--transition);
+}
+.footer-social-btn:hover { background: rgba(255,255,255,0.14); color: #fff; transform: translateY(-2px); }
+.footer-social-wa { color: #25D366; }
+.footer-social-wa:hover { background: rgba(37,211,102,0.15); border-color: rgba(37,211,102,0.3); color: #25D366; }
+
+/* --- Heading --- */
+.footer-heading {
+  color: var(--yellow);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 8px;
+}
+.footer-heading::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, rgba(245,158,11,0.3), transparent);
+}
+
+/* --- Links --- */
+.footer-links { display: flex; flex-direction: column; gap: 11px; }
 .footer-links a {
-  color: rgba(255,255,255,0.52);
-  font-size: 0.88rem;
+  color: rgba(255,255,255,0.48);
+  font-size: 0.86rem;
   display: flex; align-items: center; gap: 9px;
-  transition: color var(--transition);
+  transition: color var(--transition), gap var(--transition);
 }
-.footer-links a:hover { color: var(--white); }
-.footer-links i { width: 14px; text-align: center; font-size: 0.78rem; color: var(--red); }
-.footer-contact li { display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.52); font-size: 0.88rem; }
-.footer-contact i  { width: 16px; text-align: center; color: var(--red); font-size: 0.82rem; flex-shrink: 0; }
-.footer-contact a  { color: rgba(255,255,255,0.52); transition: color var(--transition); }
+.footer-links a:hover { color: var(--white); gap: 12px; }
+.footer-links i { width: 14px; text-align: center; font-size: 0.78rem; color: var(--red); flex-shrink: 0; }
+
+/* --- Contact --- */
+.footer-contact { display: flex; flex-direction: column; gap: 13px; }
+.footer-contact li { display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,0.48); font-size: 0.86rem; }
+.footer-contact-icon {
+  width: 32px; height: 32px;
+  background: rgba(220,38,38,0.1);
+  border: 1px solid rgba(220,38,38,0.2);
+  border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  color: var(--red);
+  font-size: 0.78rem;
+}
+.footer-contact a { color: rgba(255,255,255,0.48); transition: color var(--transition); }
 .footer-contact a:hover { color: var(--white); }
 
+/* --- QR Col --- */
+.footer-qr-col {}
+.footer-qr-card {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  padding: 12px 12px 10px;
+  gap: 8px;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.footer-qr-card:hover {
+  border-color: rgba(255,255,255,0.2);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+.footer-qr-img {
+  width: 110px; height: 110px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #fff;
+  padding: 4px;
+}
+.footer-qr-label {
+  color: rgba(255,255,255,0.45);
+  font-size: 0.72rem;
+  display: flex; align-items: center; gap: 5px;
+}
+.footer-qr-label i { color: #4285F4; }
+.footer-qr-hint {
+  margin-top: 10px;
+  color: rgba(255,255,255,0.3);
+  font-size: 0.74rem;
+}
+
+/* --- Bottom Bar --- */
 .footer-bottom {
   border-top: 1px solid var(--border);
-  padding: 20px;
+  padding: 18px 20px;
   text-align: center;
-  color: rgba(255,255,255,0.22);
-  font-size: 0.76rem;
 }
-.footer-bottom p + p { margin-top: 4px; }
+.footer-bottom-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: rgba(255,255,255,0.22);
+  font-size: 0.75rem;
+}
+.footer-bottom-dot { color: rgba(255,255,255,0.14); }
+.footer-heart { color: var(--red); display: inline-block; animation: heartbeat 1.8s ease-in-out infinite; }
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  14%       { transform: scale(1.3); }
+  28%       { transform: scale(1); }
+  42%       { transform: scale(1.2); }
+  56%       { transform: scale(1); }
+}
 
 /* ============================================
    STICKY WHATSAPP (mobile)
@@ -928,6 +1104,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .combos-grid     { grid-template-columns: repeat(2, 1fr); }
   .menu-grid       { grid-template-columns: repeat(2, 1fr); }
   .footer-grid     { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .footer-cta-inner { flex-direction: column; text-align: center; }
+  .footer-cta-btn   { align-self: center; }
   .stats-grid      { grid-template-columns: repeat(2, 1fr); gap: 20px; }
   .contact-wrapper { grid-template-columns: 1fr; }
   .contact-info    { flex-direction: row; }
