@@ -31,6 +31,21 @@ var COMBO_DEPS = {
   "Family Combo": ["Garlic Bread", "Coke"],
 };
 
+var COMBO_PIZZA_RULES = {
+  "Starter Combo": { size: "Medium", count: 1 },
+  "Double Treat":  { size: "Small",  count: 2 },
+  "Family Combo":  { size: "Medium", count: 2 },
+};
+
+var PIZZA_CATALOG = [
+  { name: "Margherita",     emoji: "🍕" },
+  { name: "Farmhouse",      emoji: "🌶️" },
+  { name: "Veg Loaded",     emoji: "🥦" },
+  { name: "Paneer Special", emoji: "🧀" },
+  { name: "Cheese Burst",   emoji: "🫧" },
+  { name: "Corn Delight",   emoji: "🌽" },
+];
+
 function isItemAvailable(name) {
   return AVAILABILITY[name] !== false;
 }
@@ -140,6 +155,7 @@ function generalOrderURL() {
 // ============================================
 
 let cart = loadCart();
+var _comboModalContext = null;
 
 // ---- Serviceable pincodes ----
 var SERVICEABLE_PINCODES = {
@@ -266,10 +282,149 @@ function calculateSavingsPercentage(subtotal, savings) {
 // ---- Add Combo to Cart ----
 function addComboToCart(btn) {
   var name = btn.dataset.name;
+  var rule = COMBO_PIZZA_RULES[name];
+
+  if (!rule) {
+    _directAddCombo(btn);
+    return;
+  }
+
+  _comboModalContext = {
+    btn:            btn,
+    name:           name,
+    emoji:          btn.dataset.emoji,
+    price:          parseInt(btn.dataset.price, 10),
+    mrp:            parseInt(btn.dataset.mrp, 10) || parseInt(btn.dataset.price, 10),
+    note:           btn.dataset.note,
+    rule:           rule,
+    selectedPizzas: [],
+  };
+
+  _renderComboModal();
+  document.body.classList.add("combo-modal-open");
+}
+
+function _renderComboModal() {
+  var ctx  = _comboModalContext;
+  var rule = ctx.rule;
+
+  document.getElementById("comboModalEmoji").textContent    = ctx.emoji;
+  document.getElementById("comboModalTitle").textContent    = ctx.name;
+  document.getElementById("comboModalSubtitle").textContent =
+    "Choose " + rule.count + " " + rule.size + " pizza" + (rule.count > 1 ? "s" : "") + " to include in your combo.";
+
+  var progressEl = document.getElementById("comboModalProgress");
+  var chips = "";
+  for (var c = 0; c < rule.count; c++) {
+    chips += '<div class="combo-progress-chip' + (c < ctx.selectedPizzas.length ? " filled" : "") + '"></div>';
+  }
+  var remaining = rule.count - ctx.selectedPizzas.length;
+  chips += '<span class="combo-progress-label">' +
+    (remaining > 0 ? remaining + " more to pick" : "All " + rule.count + " selected!") +
+    "</span>";
+  progressEl.innerHTML = chips;
+
+  var gridEl = document.getElementById("comboPizzaGrid");
+  var gridHTML = "";
+  var atMax = ctx.selectedPizzas.length >= rule.count;
+
+  PIZZA_CATALOG.forEach(function(pizza) {
+    if (!isItemAvailable(pizza.name)) return;
+
+    var isSelected = ctx.selectedPizzas.indexOf(pizza.name) !== -1;
+    var classes = "combo-pizza-option";
+    if (isSelected) classes += " selected";
+    if (atMax && !isSelected) classes += " maxed";
+
+    gridHTML +=
+      '<div class="' + classes + '" onclick="toggleComboPizza(\'' + pizza.name.replace(/'/g, "\\'") + '\')">' +
+        '<div class="selection-check"><i class="fa-solid fa-check"></i></div>' +
+        '<div class="combo-pizza-option-emoji">' + pizza.emoji + '</div>' +
+        '<div class="combo-pizza-option-name">' + pizza.name + '</div>' +
+        '<div class="combo-pizza-option-size">' + rule.size + '</div>' +
+      '</div>';
+  });
+
+  gridEl.innerHTML = gridHTML;
+
+  var confirmBtn   = document.getElementById("comboConfirmBtn");
+  var confirmLabel = document.getElementById("comboConfirmLabel");
+  var ready = ctx.selectedPizzas.length === rule.count;
+  confirmBtn.disabled = !ready;
+  confirmLabel.textContent = ready
+    ? "Add to Cart"
+    : "Select " + remaining + " more pizza" + (remaining > 1 ? "s" : "");
+}
+
+function toggleComboPizza(pizzaName) {
+  var ctx = _comboModalContext;
+  var idx = ctx.selectedPizzas.indexOf(pizzaName);
+
+  if (idx !== -1) {
+    ctx.selectedPizzas.splice(idx, 1);
+  } else {
+    if (ctx.selectedPizzas.length >= ctx.rule.count) return;
+    ctx.selectedPizzas.push(pizzaName);
+  }
+
+  _renderComboModal();
+}
+
+function confirmComboSelection() {
+  var ctx = _comboModalContext;
+  if (!ctx || ctx.selectedPizzas.length !== ctx.rule.count) return;
+
+  var pizzaList = ctx.selectedPizzas.join(" + ");
+  var fullNote  = ctx.note + " [" + pizzaList + "]";
+
+  var existing = null;
+  for (var i = 0; i < cart.items.length; i++) {
+    var it = cart.items[i];
+    if (
+      it.name === ctx.name &&
+      it.size === "Combo" &&
+      it.pizzas &&
+      it.pizzas.join(",") === ctx.selectedPizzas.join(",")
+    ) {
+      existing = it;
+      break;
+    }
+  }
+
+  if (existing) {
+    existing.quantity++;
+  } else {
+    cart.items.push({
+      name:     ctx.name,
+      emoji:    ctx.emoji,
+      size:     "Combo",
+      price:    ctx.price,
+      mrp:      ctx.mrp,
+      quantity: 1,
+      note:     fullNote,
+      pizzas:   ctx.selectedPizzas.slice(),
+    });
+  }
+
+  saveCart();
+  renderCart();
+  updateCartBadge();
+  updateStickyBar();
+  showToast(ctx.name + " added to cart!");
+  closeComboModal();
+}
+
+function closeComboModal() {
+  document.body.classList.remove("combo-modal-open");
+  _comboModalContext = null;
+}
+
+function _directAddCombo(btn) {
+  var name  = btn.dataset.name;
   var emoji = btn.dataset.emoji;
   var price = parseInt(btn.dataset.price, 10);
-  var mrp = parseInt(btn.dataset.mrp, 10) || price;
-  var note = btn.dataset.note;
+  var mrp   = parseInt(btn.dataset.mrp, 10) || price;
+  var note  = btn.dataset.note;
 
   var existing = null;
   for (var i = 0; i < cart.items.length; i++) {
@@ -281,15 +436,7 @@ function addComboToCart(btn) {
   if (existing) {
     existing.quantity++;
   } else {
-    cart.items.push({
-      name: name,
-      emoji: emoji,
-      size: "Combo",
-      price: price,
-      mrp: mrp,
-      quantity: 1,
-      note: note,
-    });
+    cart.items.push({ name: name, emoji: emoji, size: "Combo", price: price, mrp: mrp, quantity: 1, note: note });
   }
 
   saveCart();
@@ -456,6 +603,11 @@ function renderCart() {
           "</span>"
         : " \u2022 \u20B9" + item.price + " each") +
       "</div>" +
+      (item.pizzas && item.pizzas.length > 0
+        ? '<div class="cart-combo-pizzas">' +
+          item.pizzas.map(function(p) { return '<div class="cart-combo-pizza-line">' + p + '</div>'; }).join("") +
+          "</div>"
+        : "") +
       "</div>" +
       "</div>" +
       '<div class="qty-controls">' +
@@ -634,9 +786,12 @@ function generateWhatsAppMessage() {
   for (var i = 0; i < cart.items.length; i++) {
     var item = cart.items[i];
     var label = item.size === "Combo" ? "Combo Deal" : item.size;
+    var _comboSize = (COMBO_PIZZA_RULES[item.name] || {}).size || "";
+    var pizzaNote = (item.pizzas && item.pizzas.length > 0)
+      ? "\n     Pizzas: " + item.pizzas.map(function(p) { return p + (_comboSize ? " (" + _comboSize + ")" : ""); }).join(", ")
+      : "";
     lines.push(
-      i +
-        1 +
+      (i + 1) +
         ". " +
         item.name +
         " (" +
@@ -644,7 +799,8 @@ function generateWhatsAppMessage() {
         ") x" +
         item.quantity +
         " \u2192 \u20B9" +
-        item.price * item.quantity,
+        item.price * item.quantity +
+        pizzaNote,
     );
   }
 
@@ -699,9 +855,12 @@ function generateChatWithUsMessage(pincode) {
     for (var i = 0; i < cart.items.length; i++) {
       var item = cart.items[i];
       var label = item.size === "Combo" ? "Combo Deal" : item.size;
+      var _comboSize = (COMBO_PIZZA_RULES[item.name] || {}).size || "";
+      var pizzaNote = (item.pizzas && item.pizzas.length > 0)
+        ? "\n     Pizzas: " + item.pizzas.map(function(p) { return p + (_comboSize ? " (" + _comboSize + ")" : ""); }).join(", ")
+        : "";
       lines.push(
-        i +
-          1 +
+        (i + 1) +
           ". " +
           item.name +
           " (" +
@@ -709,7 +868,8 @@ function generateChatWithUsMessage(pincode) {
           ") x" +
           item.quantity +
           " \u2192 \u20B9" +
-          item.price * item.quantity,
+          item.price * item.quantity +
+          pizzaNote,
       );
     }
     var subtotal = calculateSubtotal();
@@ -822,6 +982,12 @@ document.addEventListener("DOMContentLoaded", function () {
   navOverlay.addEventListener("click", closeNav);
   navLinks.querySelectorAll("a").forEach(function (link) {
     link.addEventListener("click", closeNav);
+  });
+
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape" && document.body.classList.contains("combo-modal-open")) {
+      closeComboModal();
+    }
   });
 
   // ============================================

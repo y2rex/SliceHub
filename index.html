@@ -869,6 +869,31 @@
   </button>
 
   <!-- ============================================================
+       COMBO PIZZA SELECTION MODAL
+  ============================================================ -->
+  <div class="combo-modal-overlay" id="comboPizzaOverlay" onclick="closeComboModal()"></div>
+  <div class="combo-modal" id="comboPizzaModal" role="dialog" aria-modal="true">
+    <div class="combo-modal-header">
+      <div class="combo-modal-title-wrap">
+        <span class="combo-modal-emoji" id="comboModalEmoji"></span>
+        <h2 class="combo-modal-title" id="comboModalTitle"></h2>
+      </div>
+      <button class="cart-close" onclick="closeComboModal()" aria-label="Close">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <p class="combo-modal-subtitle" id="comboModalSubtitle"></p>
+    <div class="combo-modal-progress" id="comboModalProgress"></div>
+    <div class="combo-modal-pizza-grid" id="comboPizzaGrid"></div>
+    <div class="combo-modal-footer">
+      <button class="btn btn-red btn-full" id="comboConfirmBtn" onclick="confirmComboSelection()" disabled>
+        <i class="fa-solid fa-cart-plus"></i>
+        <span id="comboConfirmLabel">Add to Cart</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================================================
        CART DRAWER
   ============================================================ -->
   <div class="cart-overlay" onclick="toggleCart()"></div>

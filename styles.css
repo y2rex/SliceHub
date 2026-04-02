@@ -1544,3 +1544,208 @@ body.cart-open .cart-drawer { transform: translateX(0); }
 @media (max-width: 768px) {
   body { padding-bottom: 0; } /* override old sticky-wa padding */
 }
+
+/* ============================================
+   COMBO PIZZA SELECTION MODAL
+   ============================================ */
+
+.combo-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  z-index: 1200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+  backdrop-filter: blur(3px);
+}
+body.combo-modal-open .combo-modal-overlay {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.combo-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -48%) scale(0.96);
+  width: min(480px, calc(100vw - 32px));
+  max-height: 88vh;
+  background: var(--darker);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.65);
+  z-index: 1201;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+body.combo-modal-open .combo-modal {
+  opacity: 1;
+  pointer-events: all;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.combo-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.combo-modal-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.combo-modal-emoji { font-size: 1.6rem; }
+.combo-modal-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.combo-modal-subtitle {
+  padding: 10px 20px 4px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  flex-shrink: 0;
+}
+
+.combo-modal-progress {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 20px 10px;
+  flex-shrink: 0;
+}
+.combo-progress-chip {
+  width: 32px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--card-alt, #2a2a2a);
+  transition: background 0.2s ease;
+}
+.combo-progress-chip.filled {
+  background: var(--red);
+}
+.combo-progress-label {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-left: 4px;
+}
+
+.combo-modal-pizza-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 4px 20px 16px;
+  overflow-y: auto;
+  flex: 1;
+}
+.combo-modal-pizza-grid::-webkit-scrollbar { width: 4px; }
+.combo-modal-pizza-grid::-webkit-scrollbar-track { background: transparent; }
+.combo-modal-pizza-grid::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+.combo-pizza-option {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm, 8px);
+  padding: 14px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition), transform 0.15s;
+  text-align: center;
+  position: relative;
+  user-select: none;
+}
+.combo-pizza-option:hover {
+  border-color: rgba(220, 38, 38, 0.4);
+  transform: translateY(-2px);
+}
+.combo-pizza-option.selected {
+  border-color: var(--red);
+  background: rgba(220, 38, 38, 0.1);
+}
+.combo-pizza-option.maxed:not(.selected) {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.combo-pizza-option .selection-check {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--red);
+  color: var(--white);
+  font-size: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+.combo-pizza-option.selected .selection-check {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.combo-pizza-option-emoji { font-size: 2rem; margin-bottom: 2px; }
+.combo-pizza-option-name {
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--white);
+  line-height: 1.3;
+}
+.combo-pizza-option-size {
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.combo-modal-footer {
+  padding: 14px 20px 18px;
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+  background: var(--darker);
+}
+.combo-modal-footer .btn[disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none;
+  box-shadow: none;
+}
+
+.cart-combo-pizzas {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  margin-top: 3px;
+}
+.cart-combo-pizza-line {
+  font-size: 0.7rem;
+  color: var(--muted);
+  padding-left: 2px;
+}
+.cart-combo-pizza-line::before {
+  content: '↳ ';
+  color: var(--red);
+  font-weight: 700;
+}
+
+@media (max-width: 480px) {
+  .combo-modal-pizza-grid {
+    grid-template-columns: 1fr;
+  }
+}
